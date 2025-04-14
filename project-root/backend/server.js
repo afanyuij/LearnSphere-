@@ -14,16 +14,24 @@ app.use(express.urlencoded({extended:true}))
 const userSchema = new mongoose.Schema({
     name:{type:String, required:true},
     email:{type:String, required:true, unique:true},
-    role:{type:String, enum:["instructor", "student"], required:true, unique:true},
+    role:{type:String, enum:["instructor", "student"], required:true},
     password:{type:String, required:true}
 },{timeStamp:true})
 const userModel = mongoose.model("Users",userSchema)
+
+// view all users
+app.get("/users", async(req,res)=>{
+    const users = await userModel.find()
+    if(!users){
+        return res.status(400).json({message:"No users found"})
+    }
+    res.status(200).json({"users":users})
+})
 
 // routes for adding user
 
 app.post("/users/api/adduser", async(req,res)=>{
     const {name,email,role,password} = req.body
-   
    
     const newUser = userModel({
         "name":name,
@@ -31,10 +39,11 @@ app.post("/users/api/adduser", async(req,res)=>{
         "role":role,
         "password":password
     })
-    const existing = userModel.findOne({email})
+    const existing = await userModel.findOne({email})
     if(existing){
         return res.status(400).json({message:"Email already exists"})
     }
+    
     if(!name || !email || !role || !password){
         return res.status(400).json({message:"Please fill all fields"})
     }
@@ -59,15 +68,36 @@ app.post("/users/api/userlogin", async(req,res)=>{
     res.status(200).json({"message": "logged in successfully"})
 })
 
-app.get("/users", async(req,res)=>{
-    const users = await userModel.find()
-    if(!users){
-        return res.status(400).json({message:"No users found"})
+
+// deleting a user
+
+app.delete("/users/deleteUser", async(req,res)=>{
+    const {id}=req.query
+    const deleteUser = await userModel.findByIdAndDelete(id);
+    if(!deleteUser){
+        return res.status(400).json({message:"User not found"})
     }
-    res.json(users)
+    res.status(200).json({"status":"user deleted successfully"})
+
 })
 
 
+// updating users
+
+app.put("/updateuser", async(req,res)=>{
+    const {id}=req.query
+    const {name,email,role,password}=req.body
+    const updatedUser= await userModel.findByIdAndUpdate(id,{
+        "name":name,
+        "email":email,
+        "role":role,
+        "password":password
+    })
+    if(!updatedUser){
+        return res.status(400).json({message:"User not found"})
+    }
+    res.status(200).json({"message": "user updated successfully"})
+})
 
 
 
