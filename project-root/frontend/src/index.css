@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.pop{
+  font-family: 'Poppins',sans-serif;
+}
+.bg{
+  background: url("/background/mainbac.jpg") no-repeat center center;
+  background-size: cover;
+}
+body{
+  overflow-x: hidden;
+}
+.coursebac{
+  background: url("/background/coursebac.jpg") no-repeat;
+  background-size: cover;
+  
+
+}

@@ -72,6 +72,6 @@ export const updateCourse = async(req,res)=>{
         modules:modules
 
     }) 
-    const updatedCourse = courseUpdate.save()
-    res.status(200).json({message:"Course updated successfully", updatedCourse})
+    // const updatedCourse = courseUpdate.save()
+    res.status(200).json({message:"Course updated successfully", courseUpdate})
 }
