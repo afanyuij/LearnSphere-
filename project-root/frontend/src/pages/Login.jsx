@@ -132,41 +132,29 @@ export function Login() {
             <p className="text-white opacity-80">
               Join our platform to streamline your study processes, enhance productivity, and achieve academic success.
             </p>
-            <p className="text-white opacity-80">
-            Unlock your dashboard and pick up right where you stopped.
-            </p>
           </div>
 
-          <div className="mt-auto">
-            <div className="flex flex-col space-y-4">
-              <div className="text-white opacity-70 text-sm">
-                <div className="flex justify-between mb-2">
-                  <span>Study Hours</span>
-                  <span>+15% this week</span>
-                </div>
-                <div className="w-full bg-white bg-opacity-20 h-2 rounded-full">
-                  <div className="bg-white h-2 rounded-full w-3/4"></div>
-                </div>
+          <div className="mt-8">
+            <div className="grid grid-cols-2 gap-6">
+              <div className="bg-gray-600 bg-opacity-10 p-6 rounded-lg">
+                <div className="text-white text-lg font-medium mb-2">Study Smarter</div>
+                <p className="text-white text-opacity-70 text-sm">
+                  Optimize your learning with AI-powered study recommendations
+                </p>
               </div>
-
-              <div className="text-white opacity-70 text-sm">
-                <div className="flex justify-between mb-2">
-                  <span>Assignments Completed</span>
-                  <span>92%</span>
-                </div>
-                <div className="w-full bg-white bg-opacity-20 h-2 rounded-full">
-                  <div className="bg-white h-2 rounded-full w-11/12"></div>
-                </div>
+              <div className="bg-gray-600 bg-opacity-10 p-6 rounded-lg">
+                <div className="text-white text-lg font-medium mb-2">Track Progress</div>
+                <p className="text-white text-opacity-70 text-sm">
+                  Monitor your academic journey with detailed analytics
+                </p>
               </div>
-
-              <div className="text-white opacity-70 text-sm">
-                <div className="flex justify-between mb-2">
-                  <span>Knowledge Retention</span>
-                  <span>85%</span>
-                </div>
-                <div className="w-full bg-white bg-opacity-20 h-2 rounded-full">
-                  <div className="bg-white h-2 rounded-full w-4/5"></div>
-                </div>
+              <div className="bg-gray-600 bg-opacity-10 p-6 rounded-lg">
+                <div className="text-white text-lg font-medium mb-2">Collaborate</div>
+                <p className="text-white text-opacity-70 text-sm">Connect with peers for group study sessions</p>
+              </div>
+              <div className="bg-gray-600 bg-opacity-10 p-6 rounded-lg">
+                <div className="text-white text-lg font-medium mb-2">Resources</div>
+                <p className="text-white text-opacity-70 text-sm">Access a vast library of study materials</p>
               </div>
             </div>
           </div>

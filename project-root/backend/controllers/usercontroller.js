@@ -12,10 +12,11 @@ import userModel from "../models/users.js"
 // routes for adding user
 
 export const registerUser= async(req,res)=>{
-    const {name,email,role,password} = req.body
+    const {fname,lname,email,role,password} = req.body
    
     const newUser = userModel({
-        "name":name,
+        "fname":fname,
+        "lname":lname,
         "email":email,
         "role":role,
         "password":password
@@ -25,10 +26,10 @@ export const registerUser= async(req,res)=>{
         return res.status(400).json({message:"Email already exists"})
     }
     
-    if(!name || !email || !role || !password){
+    if(!fname ||!lname || !email || !role || !password){
         return res.status(400).json({message:"Please fill all fields"})
     }
-    const created = newUser.save()
+    const created =await newUser.save()
     if(!created){
         return res.status(400).json({message:"Failed to create user"})
     }
@@ -46,9 +47,14 @@ export const loginUser = async(req,res)=>{
     if(user.password !== password){
         return res.status(400).json({message:"Password is incorrect"})
     }
-    res.status(200).json({"message": "logged in successfully"})
-}
+    res.status(200).json({"message": "logged in successfully",
+     role: user.role,
+     userId: user._id
+     
 
+    })
+}
+ 
 
 // deleting a user
 

@@ -17,7 +17,7 @@ export function Navbar(){
                 <div tabIndex={0} role="button" className="bg-gray-800 m-1 w-full p-3 flex items-center justify-center gap-3 cursor-pointer">Guest <User size={30} color="#ffffff" absoluteStrokeWidth /><ChevronDown size={20} color="#ffffff" absoluteStrokeWidth /></div>
                      <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-xl">
                         <h3 className=' my-3'>Sign in to Your account</h3>
-                       <li className='hover:bg-yellow-400 hover:text-gray-900 duration-200 my'><a>Sign In</a></li>
+                       <li className='hover:bg-yellow-400 hover:text-gray-900 duration-200 my'><a href='/login'>Sign In</a></li>
                         <li className='hover:bg-yellow-400 hover:text-gray-900 duration-200 my'><a>Sign Up</a></li>
                  </ul>
                     </div>

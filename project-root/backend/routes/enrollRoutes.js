@@ -3,8 +3,8 @@ import { enrollStudent,getEnrollment,geEnrollbyUser, completeModule } from "../c
 
 const enrollRoutes = express.Router()
 
+enrollRoutes.get("/", getEnrollment)
 enrollRoutes.post("/enroll", enrollStudent)
-enrollRoutes.get("/allEnrollment", getEnrollment)
 enrollRoutes.get("/enrollByUser", geEnrollbyUser)
 enrollRoutes.post("/completeModule", completeModule)
 

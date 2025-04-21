@@ -1,89 +1,88 @@
-import { Navbar } from "../components/Navbar"
-import { Building,GraduationCap,LibraryBig,BookOpenCheck,User, LogOut,ServerCog  } from 'lucide-react';
-import axiosInt from "../api/axiosInit";
-import { useState, useEffect } from "react";
-export function Course(){
-    const [courses, setCourse ]= useState([]);
-    const [loading,setLoading] = useState(true)
-
-    useEffect(()=>{
-        const fetchCourse = async()=>{
-            try{
-                const res = await axiosInt.get("/courses")
-                console.log("API Response:", res.data);
-                setCourse(res.data);
-            }catch(err){
-                console.log(err)
-            }finally{
-                setLoading(false)
-            }
-        }
-        fetchCourse()
-    },[])
-    return (
-        <>
-           <div className="coursebac w-screen h-[100vh] p-8 px-16">
-           <Navbar />
-           <h1 className="mt-24 text-white text-center text-4xl ml-14 pop font-bold mb-24">Online Courses</h1>
-           
-           
-
-            {loading ? (
-                <div className="flex justify-center items-center h-screen">
-                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border">Loading....</div>
-                </div>
-            ) : (
-                <div className="flex justify-center p-6 flex-wrap gap-6">
-                {courses.map((course) => (
-                  <div className="card bg-white w-96 shadow-xl" key={course._id}>
-                    <figure>
-                      <img
-                        src="/learn.jpg"
-                        alt={course.title}
-                        className="w-full h-48 object-cover"
-                      />
-                    </figure>
-                    <div className="card-body">
-                      <h2 className="card-title text-black flex justify-between">
-                        {course.title}
-                        <p className="text-lg font-semibold text-blue-500">${course.price}/month</p>
-                      </h2>
-                      <p className="text-sm text-gray-600">{course.description.split("").slice(0,100).join("")}....</p>
-                      
-                      {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                    <button className="btn" onClick={()=>document.getElementById('my_modal_3').showModal()}>Read More</button>
-                    <dialog id="my_modal_3" className="modal w-screen">
-                      <div className="modal-box bg-white w-full">
-                        <div className="img w-full mt-2">
-                            <img src="/learn.jpg" alt="" srcset="" />
-                        </div>
-                     <form method="dialog">
-                     {/* if there is a button in form, it will close the modal */}
-                          <button className="cursor-pointer  btn-sm btn-circle  hover:bg-gray-100 absolute right-2 top-2 text-black">✕</button>
-                     </form>
-                         <h3 className="font-bold text-lg text-gray-600 text-center mt-4">Learn {course.title}</h3>
-                                <p className="py-4 text-gray-700 mb-2">{course.description}</p>
-                                <a href="#">
-                                    3<button className="bg-gray-800 p-3 w-full">Enroll Now</button>
-                                    </a>
-                        </div>
-                        </dialog>
-                     
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-            )
-        }
-            
-
+import { BookOpen, GraduationCap, Home, Search, User } from "lucide-react"
+// import axiosInt from "../api/axiosInit"
+// import { useState,useEffect } from "react"
+export function Course() {
+  // const [users, setUsers] = useState([])
+  
+  // useEffect(()=>{
+  //     const fetchUser = async () => {
+  //       const user = await axiosInt.get('/users');
+  //       setUsers(user.data.users);
+  //       console.log(user.data);
+  //     }
+  //     fetchUser()
+  // },[])
+  return (
+    <div className="flex min-h-screen flex-col">
+      {/* Header/Navigation Bar */}
+      <header className="sticky top-0 z-50 flex h-16 items-center gap-4 border-b bg-white px-4 md:px-6">
+        <a href="/dashboard" className="flex items-center text-gray-800 gap-2 font-semibold">
           
-                
-            
+          <span className="hidden md:inline-block">LearnSphere/Courses</span>
+        </a>
+        <div className="relative ml-auto flex-1 md:grow-0 md:w-80">
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+          <input
+            type="search"
+            placeholder="Search courses..."
+            className="w-full rounded-lg border text-gray-800 border-gray-200 pl-8 h-10 md:w-80"
+          />
+        </div>
+        <div className="ml-auto hidden items-center gap-4 md:flex">
+          <button className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900">Help Center</button>
+          <div className="avatar avatar-placeholder">
+          
 
+           <div className="bg-neutral text-neutral-content w-10 rounded-full" >
+             <span className="text-xl">D</span>
            </div>
-           
-        </>
-    )
+          
+          </div>
+        </div>
+       
+      </header>
+
+      <div className="flex flex-1">
+        {/* Sidebar */}
+        <aside className="w-64 border-r bg-white hidden md:block">
+          <div className="py-4">
+            <nav className="grid gap-1 px-2">
+              <a
+                href="#"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-800 hover:text-gray-900 hover:bg-gray-100"
+              >
+                <Home className="h-4 w-4" />
+                Dashboard
+              </a>
+              <a
+                href="/dashboard/my-courses"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-800 hover:text-gray-900 hover:bg-gray-100"
+              >
+                <BookOpen className="h-4 w-4" />
+                My Courses
+              </a>
+              <a
+                href="/dashboard/courses"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-800  hover:text-gray-900 hover:bg-gray-100"
+              >
+                <Search className="h-4 w-4" />
+                Browse Courses
+              </a>
+              <a
+                href="/dashboard/profile"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-800 hover:text-gray-900 hover:bg-gray-100"
+              >
+                <User className="h-4 w-4" />
+                Profile
+              </a>
+            </nav>
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 p-4 md:p-6 bg-gray-100"></main>
+      </div>
+    </div>
+  )
 }
+
